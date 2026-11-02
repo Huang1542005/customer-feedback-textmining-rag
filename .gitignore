@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets
+data/
+
+# Generated files
+artifacts/*
+models/
+
+# OS
+.DS_Store
+Thumbs.db
