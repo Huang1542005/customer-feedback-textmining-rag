@@ -38,6 +38,7 @@ def main() -> None:
     print(f"  Rows out            : {stats['rows_out']:,}")
     print(f"  Sentiment (%)       : {(df['sentiment'].value_counts(normalize=True) * 100).round(1).to_dict()}")
     print(f"  Median words/review : {int(df['word_count'].median())}")
+    print(f"  Empty text_normalized: {int((df['text_normalized'].str.len() == 0).sum()):,}")
     print(f"  Negative reviews    : {int(df['is_negative'].sum()):,}\n")
 
     save_reviews(df, args.output)

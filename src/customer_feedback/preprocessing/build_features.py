@@ -4,6 +4,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
+from .normalize_text import normalize_for_mining
+
 SENTIMENT_ORDER = ["negative", "neutral", "positive"]
 
 
@@ -19,7 +21,8 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     """Add derived columns (returns a new DataFrame).
 
     New columns:
-        review_text    summary + text in one field (used for mining and embeddings)
+        review_text    summary + text in one field, natural casing (embeddings, RAG, LLM, sentiment)
+        text_normalized  lowercase, stopwords removed (TF-IDF, keywords, topic models)
         char_count     length of `text` in characters
         word_count     number of whitespace-separated words in `text`
         sentiment      negative / neutral / positive (from score)
@@ -34,6 +37,8 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
         summary.str.len() > 0, summary + ". " + out["text"], out["text"]
     )
     out["review_text"] = out["review_text"].astype("string")
+
+    out["text_normalized"] = normalize_for_mining(out["review_text"])
 
     out["char_count"] = out["text"].str.len().astype("int32")
     out["word_count"] = out["text"].str.split().str.len().astype("int32")

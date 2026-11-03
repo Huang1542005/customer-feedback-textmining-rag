@@ -11,6 +11,7 @@ from __future__ import annotations
 import html
 import logging
 import re
+import unicodedata
 
 import pandas as pd
 
@@ -21,6 +22,12 @@ _BR_RE = re.compile(r"<\s*br\s*/?\s*>", flags=re.IGNORECASE)
 _TAG_RE = re.compile(r"</?[a-zA-Z][^>]*>")
 _URL_RE = re.compile(r"(?:https?://|\bwww\.)\S+", flags=re.IGNORECASE)
 _WS_RE = re.compile(r"\s+")
+# 4+ repeated letters/!/?/. ("ewwwwww", "!!!!!!") -> 3. Digits are left alone ("100000").
+_REPEAT_RE = re.compile(r"([A-Za-z!?.])\1{3,}")
+_NON_ASCII_RE = r"[^\x00-\x7F]"
+_QUOTES = str.maketrans(
+    {"\u2018": "'", "\u2019": "'", "\u201c": '"', "\u201d": '"', "\u2013": "-", "\u2014": "-"}
+)
 
 # Rows whose cleaned text is shorter than this are dropped.
 MIN_TEXT_CHARS = 10
@@ -30,7 +37,11 @@ DEDUP_KEYS = ["user_id", "timestamp", "text"]
 
 
 def clean_series(s: pd.Series) -> pd.Series:
-    """Clean a text Series: strip HTML tags, decode entities, remove URLs, collapse whitespace."""
+    """Clean a text Series.
+
+    Strips HTML tags, decodes entities, normalizes Unicode (NFKC) and curly quotes,
+    removes URLs, shortens runs of repeated characters and collapses whitespace.
+    """
     s = s.astype("string")
     s = s.str.replace(_BR_RE, " ", regex=True)
     s = s.str.replace(_TAG_RE, " ", regex=True)
@@ -41,7 +52,16 @@ def clean_series(s: pd.Series) -> pd.Series:
         s = s.copy()
         s[has_entity] = s[has_entity].map(html.unescape)
 
+    # Unicode: NFKC + curly quotes -> straight quotes (only rows with non-ASCII chars)
+    non_ascii = s.str.contains(_NON_ASCII_RE, regex=True).fillna(False).to_numpy(dtype=bool)
+    if non_ascii.any():
+        s = s.copy()
+        s[non_ascii] = s[non_ascii].map(lambda x: unicodedata.normalize("NFKC", x).translate(_QUOTES))
+
     s = s.str.replace(_URL_RE, " ", regex=True)
+    # Arrow's regex engine has no backreferences, so this step runs on Python objects.
+    s = s.astype(object).map(lambda x: _REPEAT_RE.sub(r"\1\1\1", x), na_action="ignore")
+    s = s.astype("string")
     s = s.str.replace(_WS_RE, " ", regex=True).str.strip()
     return s
 
