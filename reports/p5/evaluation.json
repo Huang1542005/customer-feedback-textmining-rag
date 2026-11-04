@@ -1,0 +1,29 @@
+{
+  "scope": "Artifact integrity and evidence traceability, not semantic correctness or retrieval relevance.",
+  "issue_count": 12,
+  "citation_count": 108,
+  "issues_with_authored_insight": 12,
+  "resolved_citation_count": 108,
+  "citation_resolution_rate": 1.0,
+  "issues_with_resolved_evidence": 12,
+  "issues_with_p4_evidence": 12,
+  "assignment_count": 57031,
+  "orphan_review_assignments": 0,
+  "orphan_issue_assignments": 0,
+  "retrieval_quality": {
+    "status": "not_evaluated",
+    "reason": "No query relevance labels supplied by P4."
+  },
+  "semantic_faithfulness": {
+    "status": "not_evaluated",
+    "reason": "Requires claim-level human or independently validated evaluation."
+  },
+  "sentiment_accuracy": {
+    "status": "not_evaluated",
+    "reason": "No independent sentiment ground truth supplied."
+  },
+  "limitations": [
+    "A resolved quotation proves traceability, not that it supports a causal claim.",
+    "Policy text is traced to the P4 output, not independently authenticated."
+  ]
+}

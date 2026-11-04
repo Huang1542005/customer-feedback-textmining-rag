@@ -1,0 +1,189 @@
+{
+  "method": "assistant_authored_evidence_synthesis",
+  "scope": "Phân tích hồi cứu dữ liệu review 1999–2012. Số liệu nhóm lấy từ toàn bộ output P3; bằng chứng P4 giới hạn ở 1.000 review đầu. Review đại diện P3 được dùng bổ sung và ghi riêng nguồn. Các hướng hành động dưới đây là đề xuất điều tra, không phải nguyên nhân đã xác nhận.",
+  "source_fingerprints": {
+    "issues": "fb0915a176b1dc2a448ed2c9059fe300760467389ef19374f478fe1289a8b5fe",
+    "retrieval": "e2d8cf9dea5ed6ab693c18d47878eff7e10dfba7cc05b09c7170b0ccd133c3a5",
+    "reviews": "66c36b8dcce944aa65b395b10482669a891e59ef1f5631b4ea40438159ac31bc",
+    "patterns": "440a7fdd7ec4c42e69d8e0de045e4f5a69661abad34b22f3f4db9c44855a2d6a"
+  },
+  "executive_findings": [
+    {
+      "title": "1. Tập trung vào vấn đề có khối lượng lớn, chưa có dấu hiệu bùng tăng ở kỳ cuối",
+      "text": "Ba nhóm đứng đầu theo priority chứa 27.738/56.919 review được gán nhóm, khoảng 48,7%. Có 112 review tiêu cực mang nhãn chưa gán, nên mẫu số này khác tổng 57.031 review tiêu cực. Cả 12 nhóm đều có trend_status=stable ở kỳ 2012-10. Ưu tiên hiện tại chủ yếu phản ánh khối lượng và mức độ bất mãn, không chứng minh một cuộc khủng hoảng đang tăng nhanh. Nhãn nhóm còn rộng; không diễn giải 48,7% thành tỷ lệ của một nguyên nhân duy nhất.",
+      "action": "Ưu tiên rà soát nhóm giao nhận, trải nghiệm mùi/vị và thông tin thành phần; chia nhỏ nguyên nhân trước khi giao nhiệm vụ cho từng bộ phận.",
+      "citation_ids": []
+    },
+    {
+      "title": "2. Độ kín bao bì là điểm kiểm tra cụ thể hơn việc quy toàn bộ lỗi cho vận chuyển",
+      "text": "Nhóm bao bì có 5.302 phàn nàn. P4 tìm được review #402 mô tả 3/4 túi bung miệng dù không bị rách, và #567 mô tả túi mở, đồ ăn đổ trong hộp. Hai trường hợp chỉ ra việc cần kiểm tra đường hàn/miệng túi và cách đóng kiện, nhưng chưa xác định lỗi xảy ra tại nhà máy, kho hay trên đường giao.",
+      "action": "Lấy mẫu kiểm tra độ kín trước xuất kho, đối chiếu ảnh kiện ngoài và bao bì trong; theo dõi tỷ lệ bung miệng túi theo SKU/lô thay vì chỉ theo hãng vận chuyển.",
+      "citation_ids": ["Review #402", "Review #567"]
+    },
+    {
+      "title": "3. Sai lệch kỳ vọng xuất hiện ở cả thành phần, hương vị và hàng thực nhận",
+      "text": "P4 #283 phản ánh tên gọi gợi kỳ vọng vị gạo nhưng thành phần/vị lại thiên về ngô. Review đại diện P3 #29075 phản ánh danh sách thành phần trên trang bán khác nhãn thực tế; #238663 phản ánh đặt một loại nhưng nhận loại khác. Đây là các cơ chế khác nhau cùng làm khách thấy sản phẩm không đúng kỳ vọng, cần tách lỗi thông tin khỏi lỗi lấy hàng.",
+      "action": "Đối chiếu trang bán với nhãn sản phẩm theo phiên bản; kiểm tra mã biến thể lúc lấy hàng; không gom mọi phản hồi 'không như mong đợi' thành lỗi chất lượng.",
+      "citation_ids": ["Review #283", "Review #29075", "Review #238663"]
+    },
+    {
+      "title": "4. 'Không được trả hàng' có thể làm trải nghiệm xấu thêm, dù vẫn có phương án hoàn tiền",
+      "text": "P4 #394 và các ví dụ P3 #360394, #312691 cho thấy khách hiểu rằng hàng thực phẩm không thể trả nên mình phải chịu thiệt. Trong khi đó #88512 kể đã được hoàn tiền sau hai lần nhận sai. Policy trong kho P4 cũng phân biệt không nhận hàng trả vật lý với hoàn tiền/đổi hàng không cần gửi lại. Bằng chứng gợi ý khoảng cách truyền thông hoặc xử lý hỗ trợ; chưa chứng minh toàn bộ khách bị từ chối hoàn tiền.",
+      "action": "Làm rõ quy trình xử lý giao sai/hàng hỏng trên trang đơn hàng và kịch bản hỗ trợ; đo tỷ lệ liên hệ lại, thời gian xử lý và số lần khách phải giải thích lại.",
+      "citation_ids": ["Review #394", "Review #360394", "Review #312691", "Review #88512", "POL-RET-003::pol_POL-RET-003_2"]
+    },
+    {
+      "title": "5. Sản phẩm còn hạn vẫn có thể bị chê cũ/ôi; chưa đủ cơ sở quy về tồn kho hết hạn",
+      "text": "P4 #542 và #619 mô tả cảm giác stale dù ngày hết hạn chưa qua. Các ví dụ P3 #119157 và #234066 lại phản ánh sản phẩm đã hết hạn khi nhận. Cần tách hai nhánh: giao hàng quá hạn và cảm quan không đạt khi còn hạn. Nguyên nhân của nhánh sau chưa được kiểm nghiệm.",
+      "action": "Ghi đồng thời hạn sử dụng, mã lô, tình trạng niêm phong và mô tả cảm quan; kiểm tra lưu kho/bao bì bên cạnh quy tắc xuất hàng theo hạn.",
+      "citation_ids": ["Review #542", "Review #619", "Review #119157", "Review #234066"]
+    },
+    {
+      "title": "6. Cần đọc nội dung: 5 sao không luôn đồng nghĩa với không có phàn nàn",
+      "text": "P4 #899 cho 5 sao nhưng mô tả không chịu được mùi; #745 cũng cho 5 sao dù có nhận xét vị ôi/chua. Ngược lại #469 dùng 'weak at the knees' để khen khoai tây, khiến kết quả truy xuất cho nhóm 'weak' dễ lệch ngữ nghĩa. Review #371 xuất hiện ở hai chunk nhưng vẫn chỉ là một khách hàng, không phải hai bằng chứng độc lập.",
+      "action": "Trong P5, đọc nguyên văn và phân biệt chunk với review; xem số sao là tín hiệu phụ. Đánh giá relevance trên một tập truy vấn có người duyệt trước khi dùng kết quả retrieval cho kết luận tự động.",
+      "citation_ids": ["Review #899", "Review #745", "Review #469", "Review #371"]
+    }
+  ],
+  "limitations": [
+    "Các insight do trợ lý đọc và tổng hợp, chưa có người đánh giá độc lập hoặc ground truth để chấm độ đúng.",
+    "Các review trích dẫn là ví dụ; không suy ra tỷ lệ nguyên nhân bên trong một nhóm từ vài ví dụ truy xuất.",
+    "Kho policy có hiệu lực năm 2026 trong khi review kết thúc năm 2012: chỉ dùng làm tham chiếu thiết kế quy trình, không kết luận khách hoặc bên bán đã vi phạm policy đó ở thời điểm lịch sử.",
+    "Review là lời kể của khách; nguyên nhân ở nhà máy, kho hay vận chuyển cần dữ liệu vận hành để xác minh.",
+    "Điểm ưu tiên là kết quả công thức P3, không phải dự báo doanh thu mất đi hoặc mức rủi ro đã kiểm định."
+  ],
+  "issues": [
+    {
+      "issue_id": 1,
+      "headline": "Giao nhận và xử lý sau mua là hai điểm cần tách để cải thiện nhóm ưu tiên cao nhất",
+      "observations": [
+        {"text": "P4 có trường hợp đơn không đến (#325), khách không biết cách xử lý sản phẩm không phù hợp vì không được trả (#394), và hàng bị khách mô tả là hỏng sau khi nhận (#775). Nội dung truy xuất của nhóm khá hỗn hợp.", "citation_ids": ["Review #325", "Review #394", "Review #775"]},
+        {"text": "Ví dụ P3 nêu giao sai biến thể (#238663, #360394), kể cả thay thế vẫn sai (#88512); đây là bằng chứng bổ sung từ P3, không phải kết quả P4 tìm trên toàn bộ kho.", "citation_ids": ["Review #238663", "Review #360394", "Review #88512"]}
+      ],
+      "interpretation": "Với 9.906 phàn nàn và 69,8% là 1 sao, đây là nơi nên bắt đầu điều tra. Tuy nhiên nhãn ordered/item/received đang gom nhiều loại sự cố; cần tách giao thiếu/giao sai khỏi tình trạng hàng và xử lý hỗ trợ.",
+      "uncertainty": "Chưa biết tỷ trọng từng lỗi con, mức thất thoát hay bên chịu trách nhiệm. Không thể coi toàn bộ 9.906 review là giao sai hàng.",
+      "actions": ["Gắn nhãn lỗi con trên một mẫu review của nhóm để xác định nhánh chiếm nhiều phản hồi nhất.", "Đối chiếu mã biến thể đặt mua và mã quét khi lấy hàng; ghi nhận riêng trường hợp thay thế vẫn sai.", "Kiểm tra khách có được thông báo rõ phương án hoàn tiền/đổi hàng không cần trả vật lý hay không."]
+    },
+    {
+      "issue_id": 0,
+      "headline": "Mùi và cảm quan không chấp nhận được tạo ra hành vi bỏ sản phẩm, nhưng số sao có thể che khuất phản hồi",
+      "observations": [
+        {"text": "P4 #899 và #745 có nội dung chê mùi/vị dù cho 5 sao. Vì thế các review này có thông tin phàn nàn thực sự, không nên loại chỉ vì rating cao.", "citation_ids": ["Review #899", "Review #745"]},
+        {"text": "Ví dụ P3 #528009, #103436 và #537738 kể việc dừng sử dụng hoặc vứt bỏ sản phẩm vì kết cấu/mùi không chấp nhận được.", "citation_ids": ["Review #528009", "Review #103436", "Review #537738"]}
+      ],
+      "interpretation": "Nhóm lớn nhất theo số lượng có 10.580 phàn nàn, nhưng từ khóa away/smell/gave chưa tạo thành một loại lỗi đồng nhất. Hành vi bỏ sản phẩm là tín hiệu bất mãn hữu ích để đọc sâu; không phải bằng chứng xác nhận sản phẩm hỏng.",
+      "uncertainty": "Chưa phân biệt được đặc trưng mùi tự nhiên, sở thích cá nhân và suy giảm chất lượng; chưa có kiểm nghiệm hay thông tin lô.",
+      "actions": ["Tách mô tả mùi khỏi kết cấu và hành vi vứt bỏ để giảm độ rộng của nhóm.", "Đọc nội dung cả review rating cao khi rà soát mùi/vị.", "Thu thập mã lô và điều kiện bảo quản cho các phản hồi cảm quan tương tự trước khi gán nguyên nhân."]
+    },
+    {
+      "issue_id": 2,
+      "headline": "Minh bạch thành phần là vấn đề về độ khớp thông tin, không chỉ về khẩu vị",
+      "observations": [
+        {"text": "P4 #283 cho thấy kỳ vọng về thành phần/vị dựa vào tên sản phẩm không trùng với trải nghiệm sau khi đọc nhãn và dùng thử.", "citation_ids": ["Review #283"]},
+        {"text": "P3 #29075 và #186600 phản ánh thành phần trên trang bán khác nhãn nhận được; policy P4 có mục Product Formulation & Label Accuracy để tham chiếu khi thiết kế bước đối chiếu.", "citation_ids": ["Review #29075", "Review #186600", "POL-FQD-002::pol_POL-FQD-002_4"]}
+      ],
+      "interpretation": "Nhóm có 7.252 phàn nàn, 66,2% là 1 sao. Hướng xử lý có cơ sở là kiểm tra tính nhất quán giữa tên sản phẩm, thông tin trang bán và nhãn theo phiên bản, thay vì chỉ giải thích rằng khách không thích vị.",
+      "uncertainty": "Các lời kể chưa chứng minh mọi listing đều sai; chưa xác minh phiên bản công thức tại thời điểm mua hoặc kết luận về ảnh hưởng sức khỏe của thành phần.",
+      "actions": ["Đối chiếu listing, ảnh nhãn và dữ liệu thành phần theo từng SKU/phiên bản.", "Lưu ngày cập nhật công thức và thông báo thay đổi cho người mua lại.", "Phân biệt phản hồi 'không thích thành phần' với 'thành phần không khớp mô tả' khi phân loại."]
+    },
+    {
+      "issue_id": 5,
+      "headline": "'Lãng phí tiền' mô tả kết quả bất mãn, chưa chỉ ra một lỗi vận hành duy nhất",
+      "observations": [
+        {"text": "P4 #556 cho biết khách bỏ cả hai thùng snack nhưng không mô tả đủ nguyên nhân; nhiều kết quả khác trong nhóm lại mang tính khen giá trị.", "citation_ids": ["Review #556", "Review #743", "Review #665"]},
+        {"text": "P3 có ví dụ về lượng hàng không xứng giá (#340642), đồ chơi không tạo thời gian sử dụng như mong đợi (#158936), và sản phẩm không đạt công dụng kỳ vọng (#343413).", "citation_ids": ["Review #340642", "Review #158936", "Review #343413"]}
+      ],
+      "interpretation": "Dù 79,9% trong 3.843 phàn nàn là 1 sao, không nên kết luận nguyên nhân chính là giá cao. Nhóm này biểu đạt mức thất vọng mạnh và cần được gán thêm nhãn nguyên nhân.",
+      "uncertainty": "Chưa biết tỷ lệ do giá, quy cách, công dụng hay chất lượng; không suy ra mức thiệt hại tài chính từ số review.",
+      "actions": ["Phân loại lại theo nguyên nhân cụ thể trước khi đề xuất giảm giá hoặc khuyến mại.", "Đối chiếu số lượng/quy cách và mô tả công dụng với kỳ vọng người mua.", "Theo dõi lý do hoàn tiền của nhóm này thay vì chỉ đếm cụm từ waste money."]
+    },
+    {
+      "issue_id": 3,
+      "headline": "Bung miệng túi và thiếu bao bì trong là các lỗi có thể kiểm tra trực tiếp",
+      "observations": [
+        {"text": "P4 #402 mô tả 3/4 túi bung ở miệng, không rách; #567 mô tả nhiều túi mở và đồ ăn tràn trong kiện. Đây là tín hiệu để kiểm tra độ kín và đóng gói.", "citation_ids": ["Review #402", "Review #567"]},
+        {"text": "Ví dụ P3 #312691 và #30701 bổ sung tình huống túi hở hoặc sản phẩm không có túi/hộp trong như mô tả. Policy P4 có quy trình xử lý khiếu nại hàng hỏng để tham chiếu.", "citation_ids": ["Review #312691", "Review #30701", "POL-RET-003::pol_POL-RET-003_3"]}
+      ],
+      "interpretation": "Trong 5.302 phàn nàn, các ví dụ trên cho hướng điều tra cụ thể hơn nhãn chung 'vận chuyển kém': kiểm tra đường hàn/miệng túi, sự hiện diện của bao bì trong và cấu trúc đóng kiện.",
+      "uncertainty": "Không thể xác định thời điểm bung túi hoặc quy trách nhiệm cho đơn vị vận chuyển chỉ từ lời kể; nhóm cũng có phản hồi về kích thước bao bì thay vì hư hỏng.",
+      "actions": ["Ghi nhận riêng bung đường hàn, rách do va chạm, thiếu bao bì trong và quy cách gây hiểu nhầm.", "Lấy mẫu kiểm tra niêm phong trước xuất kho và đối chiếu ảnh kiện khi nhận.", "Theo dõi tỷ lệ lỗi theo SKU/lô/kiểu bao bì để khoanh vùng thử nghiệm cải tiến."]
+    },
+    {
+      "issue_id": 7,
+      "headline": "Thay đổi công thức có thể làm mất kỳ vọng của người mua lại; P4 hiện hỗ trợ chủ đề này còn yếu",
+      "observations": [
+        {"text": "Review đại diện P3 #120030 phản ánh công thức/bao bì thay đổi trong khi trang bán vẫn dùng hình cũ; #432056 nói khách đang tìm sản phẩm thay thế vì không thích công thức mới.", "citation_ids": ["Review #120030", "Review #432056"]},
+        {"text": "P4 tìm được các mục về cảm quan và thay đổi công thức, nhưng review #63 nói về stale và #124 nói về lựa chọn thức ăn cho mèo; các đoạn này chưa trực tiếp chứng minh lỗi đổi công thức trong nhóm.", "citation_ids": ["Review #63", "Review #124", "POL-FQD-002::pol_POL-FQD-002_4"]}
+      ],
+      "interpretation": "Hướng hành động hợp lý cho nhóm 3.376 phàn nàn là minh bạch phiên bản công thức và đối chiếu nội dung bán hàng. Kết luận này dựa chủ yếu vào ví dụ P3 bổ sung, không nên trình bày như thành quả truy xuất mạnh của P4.",
+      "uncertainty": "Chưa có lịch sử công thức hoặc dữ liệu mua lại để xác nhận mức rời bỏ; không thể coi mọi từ old là chỉ công thức cũ.",
+      "actions": ["Gắn phiên bản công thức với ảnh và mô tả listing.", "Tách 'old formula' khỏi 'old/stale product' khi đọc nhóm.", "Nếu có dữ liệu vận hành, so sánh mua lại và lý do hoàn tiền trước/sau lần thay đổi."]
+    },
+    {
+      "issue_id": 6,
+      "headline": "Không thích vị và nghi ngờ sản phẩm cũ đang bị gộp trong cùng nhóm cảm quan",
+      "observations": [
+        {"text": "P4 #335 nghi ngờ cà phê stale, #27 chê kẹo không có vị; #650 lại cho thấy cách sử dụng/phối trộn làm thay đổi trải nghiệm vị.", "citation_ids": ["Review #335", "Review #27", "Review #650"]},
+        {"text": "P3 #415700 chê vị nhạt như bìa giấy, trong khi #52842 mô tả cả mùi và vị khó chịu.", "citation_ids": ["Review #415700", "Review #52842"]}
+      ],
+      "interpretation": "Nhóm 3.418 phàn nàn là một tập vấn đề cảm quan, chưa phải một căn nguyên. Nên tách mức độ đậm vị, kỳ vọng hương vị, cách dùng và dấu hiệu bất thường.",
+      "uncertainty": "Chưa biết tỷ lệ từng nhánh và chưa kiểm nghiệm tình trạng stale; sự khác nhau về sở thích có thể giải thích một phần phản hồi.",
+      "actions": ["Mã hóa lại phản hồi theo vị nhạt, vị lạ, mùi bất thường và cách dùng.", "Kiểm tra tính rõ ràng của hướng dẫn sử dụng khi khách cần pha/trộn sản phẩm.", "Chỉ chuyển sang điều tra chất lượng theo lô khi có bằng chứng phù hợp, không dựa riêng vào từ taste."]
+    },
+    {
+      "issue_id": 10,
+      "headline": "Cần tách hàng quá hạn khỏi hàng còn hạn nhưng cảm quan kém",
+      "observations": [
+        {"text": "P4 #542 và #619 đều mô tả cảm giác stale khi hạn sử dụng chưa qua. Điều này cho thấy chỉ kiểm tra ngày in trên nhãn chưa giải thích hết phản hồi.", "citation_ids": ["Review #542", "Review #619"]},
+        {"text": "P3 #119157 và #234066 phản ánh hàng đã quá hạn khi nhận. P4 có hai mục riêng về hạn dùng và cảm quan để tham chiếu cho hai nhánh kiểm tra.", "citation_ids": ["Review #119157", "Review #234066", "POL-FQD-002::pol_POL-FQD-002_2", "POL-FQD-002::pol_POL-FQD-002_3"]}
+      ],
+      "interpretation": "Với 2.072 phàn nàn và 67,9% là 1 sao, nhóm này có tiêu chí thu thập bằng chứng rõ: ngày đặt/nhận, hạn dùng, lô và tình trạng bao bì. Hai nhánh cần cách điều tra khác nhau.",
+      "uncertainty": "Không thể quy mọi trường hợp stale cho hàng hết hạn, bảo quản sai hoặc niêm phong lỗi nếu chưa có ảnh/lô và kiểm tra thực tế.",
+      "actions": ["Đối chiếu hạn dùng ở khâu nhập và xuất; ghi riêng tỷ lệ giao hàng quá hạn.", "Với hàng còn hạn bị chê cũ, kiểm tra bao bì/niêm phong và hồ sơ lưu kho.", "Không dùng một nhãn 'expired' chung cho cả hai loại phản hồi."]
+    },
+    {
+      "issue_id": 11,
+      "headline": "Lon móp bên trong kiện gợi ý cần kiểm tra trước đóng lốc, chưa thể mặc định do giao hàng",
+      "observations": [
+        {"text": "P4 #410 khen một loại cá hồi nhưng đồng thời kể lon của loại khác bị móp. Rating 5 sao không làm mất thông tin về kiện còn lại.", "citation_ids": ["Review #410"]},
+        {"text": "P3 #178812, #31982 và #487318 mô tả lon móp bên trong lốc bọc, có trường hợp kiện ngoài vẫn ổn. Đây là lời kể để kiểm tra giả thuyết hư hỏng có trước khâu giao cuối.", "citation_ids": ["Review #178812", "Review #31982", "Review #487318"]}
+      ],
+      "interpretation": "Nhóm 1.605 phàn nàn có một hướng khoanh vùng hữu ích: đối chiếu chất lượng lon trước đóng lốc với tình trạng kiện ngoài, thay vì chỉ tăng vật liệu chèn thùng.",
+      "uncertainty": "Review không xác nhận được thời điểm lon móp; phần lớn bằng chứng trực tiếp cho giả thuyết này đến từ P3, không phải P4.",
+      "actions": ["Lấy mẫu kiểm tra lon trước bọc lốc và trước xuất kiện.", "Ghi vị trí móp, ảnh lớp bọc và ảnh kiện ngoài để phân biệt các công đoạn.", "Theo dõi lỗi theo nhà cung cấp/lô trước khi quy trách nhiệm cho hãng giao."]
+    },
+    {
+      "issue_id": 8,
+      "headline": "Khoảng cách giữa hương vị được mô tả và vị khách cảm nhận là một hướng cải thiện thông tin",
+      "observations": [
+        {"text": "P4 #68 kỳ vọng vị xoài nhưng cảm nhận gần cam thảo; #27 chê kẹo chỉ có màu mà thiếu vị. Đây là mô tả về kỳ vọng và cảm nhận, không tự động là sản phẩm hỏng.", "citation_ids": ["Review #68", "Review #27"]},
+        {"text": "Ví dụ P3 #341866 phản ánh mô tả 'hints' về vị trái cây không đáp ứng kỳ vọng độ đậm; #429673 kỳ vọng vị bắp rang rạp chiếu phim nhưng cảm nhận nhạt.", "citation_ids": ["Review #341866", "Review #429673"]}
+      ],
+      "interpretation": "Với 3.078 phàn nàn, nhóm này gợi ý thử mô tả độ đậm/hậu vị rõ hơn và kiểm tra kỳ vọng theo từng sản phẩm. Chủ đề gần nhóm tasted và weak; chưa nên coi là ba căn nguyên riêng biệt.",
+      "uncertainty": "Chưa có thử nếm có kiểm soát để phân biệt sai mô tả, khác sở thích hay biến động chất lượng.",
+      "actions": ["Đối chiếu mô tả hương vị với phản hồi theo SKU.", "Phân biệt 'không có vị', 'không giống vị quảng bá' và 'vị lạ/bất thường'.", "Rà soát khả năng gộp hoặc định nghĩa lại các nhóm vị đang trùng chủ đề trước khi làm dashboard quản trị."]
+    },
+    {
+      "issue_id": 4,
+      "headline": "Độ đậm cà phê là tín hiệu từ ví dụ P3; kết quả P4 đang có nhiễu từ nghĩa của từ weak",
+      "observations": [
+        {"text": "P4 #469 dùng weak at the knees để khen snack, không phải chê cà phê nhạt. #371 có cả nhận xét chê một số blend và khen blend khác, xuất hiện thành hai chunk.", "citation_ids": ["Review #469", "Review #371"]},
+        {"text": "P3 #254274 nói phải dùng hai pod, #156806 nói tăng tỷ lệ cà phê/nước vẫn nhạt; đây là bằng chứng phù hợp hơn cho hướng điều tra độ đậm.", "citation_ids": ["Review #254274", "Review #156806"]}
+      ],
+      "interpretation": "Nhóm có 4.316 phàn nàn nhưng tỷ lệ 1 sao 45,2% thấp hơn các nhóm đứng đầu. Có thể ưu tiên rà soát kỳ vọng độ đậm và cách pha; chưa đủ cơ sở xác nhận lỗi định lượng pod.",
+      "uncertainty": "Chưa có thông số pha, loại máy, khối lượng cà phê hoặc thử nếm; P4 chưa truy xuất được nhiều ví dụ trực tiếp phù hợp.",
+      "actions": ["Ghi loại máy, cỡ cốc, tỷ lệ pha và blend trong mẫu rà soát.", "Đọc nội dung để loại kết quả weak mang nghĩa thành ngữ khi phân tích P5.", "Đối chiếu hướng dẫn và mô tả độ đậm trước khi đề xuất thay đổi công thức."]
+    },
+    {
+      "issue_id": 9,
+      "headline": "Vị đắng/hậu vị cần phân biệt giữa sở thích, công thức và chất lượng theo lô",
+      "observations": [
+        {"text": "P4 #362 mô tả cà phê vẫn đắng dù thêm kem/mật ong; #68 mô tả hậu vị gần cam thảo. #661 lại khen không có hậu vị đắng, nên không thể coi mọi kết quả là phàn nàn.", "citation_ids": ["Review #362", "Review #68", "Review #661"]},
+        {"text": "P3 #303450 nhận xét nước ép chua/đắng nhưng thừa nhận khác biệt khẩu vị; #291426 nói phải thêm đường/kem vì vị đắng.", "citation_ids": ["Review #303450", "Review #291426"]}
+      ],
+      "interpretation": "Trong 2.171 phàn nàn, các ví dụ cho thấy trải nghiệm vị có tính chủ quan và phụ thuộc sản phẩm. Hướng phù hợp là phân loại hậu vị theo SKU và kiểm tra tính ổn định, chưa phải kết luận chung về bảo quản kém.",
+      "uncertainty": "Chưa biết tỷ lệ do công thức, rang/pha, sở thích hay chất lượng; chưa có so sánh cùng SKU giữa các lô.",
+      "actions": ["So sánh phản hồi vị đắng theo SKU/lô và cách sử dụng.", "Mô tả rõ hậu vị trên trang bán khi đó là đặc trưng dự kiến của sản phẩm.", "Theo dõi cụm phản hồi tương tự trong cùng lô để chọn mẫu kiểm tra cảm quan."]
+    }
+  ]
+}

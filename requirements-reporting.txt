@@ -1,0 +1,7 @@
+# P5 only. Install separately; upstream requirements are intentionally unchanged.
+pandas>=2.2
+pyarrow>=15
+streamlit>=1.40
+altair>=5
+# Optional, only for --provider gemini:
+# google-genai>=2

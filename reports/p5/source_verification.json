@@ -1,0 +1,15 @@
+{
+  "upstream_source_verification": [
+    {
+      "ref": "origin/feature/rag",
+      "commit": "f5339f75a93fbd17c22c154bd739a417fce004b1",
+      "unchanged_files": 49
+    },
+    {
+      "ref": "origin/feature/text-mining",
+      "commit": "52fa727032e492c0182b6b368b43a1b47eafb00d",
+      "unchanged_files": 38
+    }
+  ],
+  "tracked_changes_within_p5": true
+}
