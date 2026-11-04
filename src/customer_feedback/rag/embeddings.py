@@ -71,9 +71,9 @@ class SentenceTransformerEmbedder(BaseEmbedder):
 
 
 class GeminiEmbedder(BaseEmbedder):
-    """Google Gemini API embedder using text-embedding-004."""
+    """Google Gemini API embedder (e.g. `gemini-embedding-001` or `text-embedding-004`)."""
 
-    def __init__(self, api_key: str | None = None, model_name: str = "text-embedding-004"):
+    def __init__(self, api_key: str | None = None, model_name: str | None = None):
         from google import genai
 
         key = api_key or os.getenv("GEMINI_API_KEY")
@@ -81,7 +81,7 @@ class GeminiEmbedder(BaseEmbedder):
             raise ValueError("GEMINI_API_KEY environment variable is required for GeminiEmbedder.")
 
         self.client = genai.Client(api_key=key)
-        self.model_name = model_name
+        self.model_name = model_name or os.getenv("GEMINI_EMBEDDING_MODEL", "gemini-embedding-001")
         self._dim = 768
 
     def embed_documents(self, texts: Sequence[str], batch_size: int = 50) -> list[list[float]]:
@@ -118,10 +118,12 @@ class GeminiEmbedder(BaseEmbedder):
 
 def get_embedder(
     provider: str = "local",
-    model_name: str = "all-MiniLM-L6-v2",
+    model_name: str | None = None,
 ) -> BaseEmbedder:
     """Factory function to acquire an Embedder instance."""
     if provider.lower() in ("gemini", "google"):
-        return GeminiEmbedder(model_name="text-embedding-004")
-    return SentenceTransformerEmbedder(model_name=model_name)
+        gemini_model = model_name or os.getenv("GEMINI_EMBEDDING_MODEL", "gemini-embedding-001")
+        return GeminiEmbedder(model_name=gemini_model)
+    local_model = model_name or "all-MiniLM-L6-v2"
+    return SentenceTransformerEmbedder(model_name=local_model)
 
