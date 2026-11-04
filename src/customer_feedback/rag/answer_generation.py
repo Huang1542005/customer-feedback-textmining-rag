@@ -50,19 +50,19 @@ class RAGGenerator:
 
     def __init__(
         self,
-        model_name: str = "gemini-2.5-flash",
+        model_name: str | None = None,
         api_key: str | None = None,
     ):
-        self.model_name = model_name
+        self.model_name = model_name or os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
         self.client = None
 
-        if self.api_key:
+        if self.api_key and self.api_key != "your_gemini_api_key_here":
             try:
                 from google import genai
 
                 self.client = genai.Client(api_key=self.api_key)
-                logger.info("Initialized Gemini client for model %s", model_name)
+                logger.info("Initialized Gemini client for model %s", self.model_name)
             except Exception as e:
                 logger.warning("Could not initialize Gemini client: %s. Using offline generator.", e)
 
@@ -76,7 +76,11 @@ class RAGGenerator:
             try:
                 return self._generate_with_gemini(issue, context)
             except Exception as e:
-                logger.warning("Gemini generation failed: %s. Falling back to structured synthesis.", e)
+                logger.error("Gemini generation failed: %s", e)
+                # Fallback to offline with error notice
+                fallback = self._generate_offline(issue, context)
+                fallback.root_cause = f"[Lỗi kết nối Gemini API: {e}]\n\n" + fallback.root_cause
+                return fallback
 
         return self._generate_offline(issue, context)
 

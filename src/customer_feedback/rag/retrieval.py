@@ -127,6 +127,8 @@ class HybridRetriever:
         issue: dict[str, Any],
         top_reviews: int = 5,
         top_policies: int = 3,
+        reviews_collection: str = "feedback_reviews",
+        policies_collection: str = "feedback_policies",
     ) -> RetrievedContext:
         """Retrieve both customer review evidence and relevant policy standards for an issue."""
         label = issue.get("label", "")
@@ -138,13 +140,13 @@ class HybridRetriever:
 
         evidence_reviews = self.hybrid_search(
             query=query,
-            collection_name="feedback_reviews",
+            collection_name=reviews_collection,
             top_k=top_reviews,
         )
 
         relevant_policies = self.dense_search(
             query=query,
-            collection_name="feedback_policies",
+            collection_name=policies_collection,
             top_k=top_policies,
         )
 

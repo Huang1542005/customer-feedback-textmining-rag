@@ -71,7 +71,7 @@ class SentenceTransformerEmbedder(BaseEmbedder):
 
 
 class GeminiEmbedder(BaseEmbedder):
-    """Google Gemini API embedder (e.g. `gemini-embedding-001` or `text-embedding-004`)."""
+    """Google Gemini API embedder (e.g. `gemini-embedding-001`)."""
 
     def __init__(self, api_key: str | None = None, model_name: str | None = None):
         from google import genai
@@ -82,7 +82,7 @@ class GeminiEmbedder(BaseEmbedder):
 
         self.client = genai.Client(api_key=key)
         self.model_name = model_name or os.getenv("GEMINI_EMBEDDING_MODEL", "gemini-embedding-001")
-        self._dim = 768
+        self._dim = 3072 if "embedding-001" in self.model_name else 768
 
     def embed_documents(self, texts: Sequence[str], batch_size: int = 50) -> list[list[float]]:
         if not texts:

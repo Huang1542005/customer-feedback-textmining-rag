@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-load_dotenv()
+load_dotenv(override=True)
 
 from customer_feedback.rag.answer_generation import RAGGenerator  # noqa: E402
 from customer_feedback.rag.document_loader import (  # noqa: E402
@@ -51,18 +51,33 @@ def get_rag_components(provider: str = "local"):
     embedder = get_embedder(provider=provider)
     vector_store = ChromaVectorStore(persist_dir=vectordb_dir, embedder=embedder)
 
+    reviews_coll = f"feedback_reviews_{provider}"
+    policies_coll = f"feedback_policies_{provider}"
+
     corpus_docs = []
     if reviews_path.exists():
-        corpus_docs = load_reviews_as_documents(reviews_path, max_docs=500)
+        max_d = 50 if provider == "gemini" else 500
+        corpus_docs = load_reviews_as_documents(reviews_path, max_docs=max_d)
 
     policy_docs = []
     if policies_dir.exists():
         policy_docs = load_policy_documents(policies_dir)
 
+    # Auto-index if collection is empty
+    if vector_store.count(reviews_coll) == 0 and corpus_docs:
+        from customer_feedback.rag.chunking import chunk_documents
+        chunked_reviews = chunk_documents(corpus_docs, max_words=120)
+        vector_store.add_documents(chunked_reviews, collection_name=reviews_coll)
+
+    if vector_store.count(policies_coll) == 0 and policy_docs:
+        from customer_feedback.rag.chunking import chunk_documents
+        chunked_policies = chunk_documents(policy_docs, max_words=200)
+        vector_store.add_documents(chunked_policies, collection_name=policies_coll)
+
     retriever = HybridRetriever(vector_store=vector_store, corpus_documents=corpus_docs)
     generator = RAGGenerator()
 
-    return vector_store, retriever, generator, corpus_docs, policy_docs
+    return vector_store, retriever, generator, corpus_docs, policy_docs, reviews_coll, policies_coll
 
 
 def main() -> None:
@@ -94,7 +109,15 @@ def main() -> None:
 
     # Load RAG Components
     try:
-        vector_store, retriever, generator, corpus_docs, policy_docs = get_rag_components(provider=provider)
+        (
+            vector_store,
+            retriever,
+            generator,
+            corpus_docs,
+            policy_docs,
+            reviews_coll,
+            policies_coll,
+        ) = get_rag_components(provider=provider)
     except Exception as e:
         st.error(f"Lỗi khởi tạo RAG components: {e}")
         st.stop()
@@ -171,7 +194,13 @@ def main() -> None:
                     else:
                         if st.button(f"🚀 Chạy RAG phân tích Sự cố #{rank}", key=f"btn_{rank}"):
                             with st.spinner("Đang truy xuất ngữ cảnh và gọi LLM..."):
-                                ctx = retriever.retrieve_context_for_issue(issue, top_reviews=3, top_policies=2)
+                                ctx = retriever.retrieve_context_for_issue(
+                                    issue,
+                                    top_reviews=3,
+                                    top_policies=2,
+                                    reviews_collection=reviews_coll,
+                                    policies_collection=policies_coll,
+                                )
                                 res = generator.generate_insight(issue, ctx)
                                 st.markdown("#### 🔍 Phân tích nguyên nhân")
                                 st.info(res.root_cause)
@@ -200,11 +229,11 @@ def main() -> None:
         )
 
         if st.button("🔍 Tìm kiếm & Sinh câu trả lời", type="primary") and user_query:
-            with st.spinner("Đang thực hiện Hybrid Search (Vector + BM25) và tổng hợp câu trả lời..."):
+            with st.spinner("Đang thực hiện Hybrid Search (Vector + BM25) và gọi Gemini LLM tổng hợp..."):
                 # Retrieve reviews
-                matched_reviews = retriever.hybrid_search(user_query, collection_name="feedback_reviews", top_k=4)
+                matched_reviews = retriever.hybrid_search(user_query, collection_name=reviews_coll, top_k=4)
                 # Retrieve policies
-                matched_policies = retriever.dense_search(user_query, collection_name="feedback_policies", top_k=2)
+                matched_policies = retriever.dense_search(user_query, collection_name=policies_coll, top_k=2)
 
                 ctx = RetrievedContext(
                     issue_id=0,
