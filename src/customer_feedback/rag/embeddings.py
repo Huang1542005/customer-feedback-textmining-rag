@@ -11,7 +11,10 @@ import os
 from abc import ABC, abstractmethod
 from typing import Sequence
 
+from dotenv import load_dotenv
 import numpy as np
+
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 

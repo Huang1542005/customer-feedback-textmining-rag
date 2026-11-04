@@ -10,7 +10,11 @@ import os
 from dataclasses import dataclass, field
 from typing import Any
 
+from dotenv import load_dotenv
+
 from customer_feedback.rag.retrieval import RetrievedContext
+
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 

@@ -15,8 +15,12 @@ import logging
 import sys
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+
+load_dotenv()
 
 from customer_feedback.rag.answer_generation import RAGGenerator  # noqa: E402
 from customer_feedback.rag.chunking import chunk_documents  # noqa: E402
