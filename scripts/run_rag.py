@@ -84,7 +84,12 @@ def main() -> None:
     parser.add_argument("--out-json", default=str(ROOT / "data/processed/rag_insights.json"))
     parser.add_argument("--out-report", default=str(ROOT / "reports/rag_insight_report.md"))
     parser.add_argument("--max-reviews", type=int, default=None, help="Limit number of reviews to index (for fast testing)")
-    parser.add_argument("--provider", default="local", choices=["local", "gemini"], help="Embedding & LLM provider")
+    parser.add_argument(
+        "--provider",
+        default=os.getenv("EMBEDDING_PROVIDER", "local"),
+        choices=["local", "gemini"],
+        help="Embedding & LLM provider",
+    )
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")

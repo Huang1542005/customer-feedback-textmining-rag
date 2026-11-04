@@ -77,23 +77,27 @@ class GeminiEmbedder(BaseEmbedder):
         from google import genai
 
         key = api_key or os.getenv("GEMINI_API_KEY")
-        if not key:
+        if not key or key == "your_gemini_api_key_here":
             raise ValueError("GEMINI_API_KEY environment variable is required for GeminiEmbedder.")
 
         self.client = genai.Client(api_key=key)
         self.model_name = model_name
         self._dim = 768
 
-    def embed_documents(self, texts: Sequence[str]) -> list[list[float]]:
+    def embed_documents(self, texts: Sequence[str], batch_size: int = 50) -> list[list[float]]:
         if not texts:
             return []
-        vectors = []
-        for text in texts:
+        vectors: list[list[float]] = []
+        for i in range(0, len(texts), batch_size):
+            batch = list(texts[i : i + batch_size])
             res = self.client.models.embed_content(
                 model=self.model_name,
-                contents=text,
+                contents=batch,
             )
-            vectors.append(res.embedding.values)
+            if hasattr(res, "embeddings") and res.embeddings:
+                vectors.extend([e.values for e in res.embeddings])
+            elif hasattr(res, "embedding") and res.embedding:
+                vectors.append(res.embedding.values)
         return vectors
 
     def embed_query(self, text: str) -> list[float]:
@@ -101,7 +105,11 @@ class GeminiEmbedder(BaseEmbedder):
             model=self.model_name,
             contents=text,
         )
-        return res.embedding.values
+        if hasattr(res, "embedding") and res.embedding:
+            return res.embedding.values
+        if hasattr(res, "embeddings") and res.embeddings:
+            return res.embeddings[0].values
+        raise ValueError("Unexpected embedding response from Gemini.")
 
     @property
     def dimension(self) -> int:
